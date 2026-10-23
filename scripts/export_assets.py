@@ -64,3 +64,21 @@ for target,meshes,span in exports:
  print('EXPORTED',target.name,len(meshes),flush=True)
  bpy.ops.render.render(write_still=True,scene=target.name)
 json.dump([dict(name=s.name,objects=len(ms),vertices=sum(len(o.data.vertices) for o in ms),source_frame=s['source_frame']) for s,ms,sp in exports],open(ROOT/'manifest.json','w'),indent=2)
+
+# Save complete startup files and verify that their dependencies are local.
+results=[]
+for path in sorted((ROOT/'assets').glob('*.blend')):
+ bpy.ops.wm.open_mainfile(filepath=str(path))
+ s=bpy.data.scenes[0];bpy.context.window.scene=s
+ # All exported files open directly on their single asset scene.
+ for screen in bpy.data.screens:
+  for area in screen.areas:
+   if area.type=='VIEW_3D':area.spaces.active.region_3d.view_perspective='CAMERA'
+ for o in s.objects:
+  if o.type=='MESH':print(path.stem,o.name,list(o.matrix_world.translation),list(o.dimensions),flush=True) if path.stem!='Cell_environment' else None
+ # Save a complete Blender startup/UI state, and drop orphan source data.
+ bpy.ops.outliner.orphans_purge(do_local_ids=True,do_linked_ids=True,do_recursive=True)
+ bpy.context.preferences.filepaths.save_version=0
+ bpy.ops.wm.save_as_mainfile(filepath=str(path),compress=True)
+ results.append(dict(file=path.name,scenes=len(bpy.data.scenes),objects=len(s.objects),libraries=len(bpy.data.libraries),external_images=[i.filepath for i in bpy.data.images if i.source=='FILE' and not i.packed_file],animated_objects=[o.name for o in s.objects if o.animation_data or o.constraints or o.modifiers],movie_clips=len(bpy.data.movieclips),camera=s.camera.name,bytes=path.stat().st_size))
+json.dump(results,open(ROOT/'validation.json','w'),indent=2)

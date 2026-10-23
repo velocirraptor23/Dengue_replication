@@ -1,0 +1,35 @@
+[
+  {
+    "file": "2R6P_ensemble.blend",
+    "scenes": 1,
+    "objects": 6,
+    "libraries": 0,
+    "external_images": [],
+    "animated_objects": [],
+    "movie_clips": 0,
+    "camera": "Camera | overview.001",
+    "bytes": 56278540
+  },
+  {
+    "file": "6MO0_protease.blend",
+    "scenes": 1,
+    "objects": 6,
+    "libraries": 0,
+    "external_images": [],
+    "animated_objects": [],
+    "movie_clips": 0,
+    "camera": "Camera | overview.002",
+    "bytes": 1396534
+  },
+  {
+    "file": "Cell_environment.blend",
+    "scenes": 1,
+    "objects": 492,
+    "libraries": 0,
+    "external_images": [],
+    "animated_objects": [],
+    "movie_clips": 0,
+    "camera": "Camera | overview",
+    "bytes": 137828745
+  }
+]

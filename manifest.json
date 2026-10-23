@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Cell_environment",
+    "objects": 488,
+    "vertices": 9933939,
+    "source_frame": 797
+  },
+  {
+    "name": "2R6P_ensemble",
+    "objects": 2,
+    "vertices": 1878834,
+    "source_frame": 346
+  },
+  {
+    "name": "6MO0_protease",
+    "objects": 2,
+    "vertices": 42102,
+    "source_frame": 960
+  }
+]
