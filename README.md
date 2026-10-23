@@ -16,8 +16,8 @@ Clone with **GitHub Desktop**, which downloads Git LFS assets, then open any `.b
 
 ```sh
 git lfs install
-git clone https://github.com/velocirraptor23/alchemistry-blender-assets.git
-cd alchemistry-blender-assets
+git clone https://github.com/velocirraptor23/Dengue_replication.git
+cd Dengue_replication
 git lfs pull
 ```
 
